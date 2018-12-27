@@ -1,0 +1,125 @@
+[
+    {
+        "id": "8e431f9e.383b4",
+        "type": "inject",
+        "z": "2f717ac6.1fc886",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "x": 270,
+        "y": 180,
+        "wires": [
+            [
+                "f3dd9016.dd9ff"
+            ]
+        ]
+    },
+    {
+        "id": "f3dd9016.dd9ff",
+        "type": "function",
+        "z": "2f717ac6.1fc886",
+        "name": "payload",
+        "func": "msg.headers={\n    deviceKey: \"YOSzgp3COFwm96BC\"\n};\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 450,
+        "y": 240,
+        "wires": [
+            [
+                "887ebbce.455fd8",
+                "df0dffb3.181a5"
+            ]
+        ]
+    },
+    {
+        "id": "887ebbce.455fd8",
+        "type": "http request",
+        "z": "2f717ac6.1fc886",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "url": "http://api.mediatek.com/mcs/v2/devices/D0Jq0stY/datachannels/Temperature/datapoints.csv",
+        "tls": "",
+        "x": 610,
+        "y": 200,
+        "wires": [
+            [
+                "4458e86d.eca8f8",
+                "d1e7f890.17d6c8"
+            ]
+        ]
+    },
+    {
+        "id": "4458e86d.eca8f8",
+        "type": "http response",
+        "z": "2f717ac6.1fc886",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 790,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "df0dffb3.181a5",
+        "type": "http request",
+        "z": "2f717ac6.1fc886",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "url": "http://api.mediatek.com/mcs/v2/devices/D0Jq0stY/datachannels/Humidity/datapoints.csv",
+        "tls": "",
+        "x": 610,
+        "y": 340,
+        "wires": [
+            [
+                "f9f0ceb5.2433a",
+                "2ef8d3b7.a5da5c"
+            ]
+        ]
+    },
+    {
+        "id": "f9f0ceb5.2433a",
+        "type": "http response",
+        "z": "2f717ac6.1fc886",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 790,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "d1e7f890.17d6c8",
+        "type": "debug",
+        "z": "2f717ac6.1fc886",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 790,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "2ef8d3b7.a5da5c",
+        "type": "debug",
+        "z": "2f717ac6.1fc886",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 810,
+        "y": 460,
+        "wires": []
+    }
+]

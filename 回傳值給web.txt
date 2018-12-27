@@ -1,0 +1,101 @@
+[
+    {
+        "id": "ad8a2a6c.386278",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "a93c4304.23dc1",
+        "type": "http in",
+        "z": "ad8a2a6c.386278",
+        "name": "",
+        "url": "/pin4",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 200,
+        "wires": [
+            [
+                "44d7b879.a8f6d8"
+            ]
+        ]
+    },
+    {
+        "id": "f52aec2e.703e8",
+        "type": "rpi-gpio in",
+        "z": "ad8a2a6c.386278",
+        "name": "GPIO4",
+        "pin": "7",
+        "intype": "up",
+        "debounce": "25",
+        "read": true,
+        "x": 160,
+        "y": 280,
+        "wires": [
+            [
+                "411a72d3.10e3ec"
+            ]
+        ]
+    },
+    {
+        "id": "411a72d3.10e3ec",
+        "type": "function",
+        "z": "ad8a2a6c.386278",
+        "name": "set",
+        "func": "global.set(\"GPIO\",msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 370,
+        "y": 260,
+        "wires": [
+            [
+                "fe5f9604.a08f38"
+            ]
+        ]
+    },
+    {
+        "id": "44d7b879.a8f6d8",
+        "type": "function",
+        "z": "ad8a2a6c.386278",
+        "name": "get",
+        "func": "msg.payload=global.get(\"GPIO\");\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 370,
+        "y": 160,
+        "wires": [
+            [
+                "b811939a.7aa9d",
+                "fe5f9604.a08f38"
+            ]
+        ]
+    },
+    {
+        "id": "b811939a.7aa9d",
+        "type": "http response",
+        "z": "ad8a2a6c.386278",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 600,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "fe5f9604.a08f38",
+        "type": "debug",
+        "z": "ad8a2a6c.386278",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 620,
+        "y": 340,
+        "wires": []
+    }
+]
